@@ -1,2 +1,2 @@
-# Arithmetical-Expression-Parser
-Arithmetical expression parser with recursive descent parsing algorithm
+# Logical-Expression-Parser
+Logical expression parser with recursive descent parsing algorithm
