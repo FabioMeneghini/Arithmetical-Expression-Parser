@@ -1,4 +1,4 @@
-# Logical-Expression-Parser
+# Logical Expression Parser
 Logical expression parser with ___recursive descent parsing___ algorithm.
 
 The language this program can parse is described by the following grammar:
