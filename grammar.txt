@@ -1,0 +1,9 @@
+S: Start (first rule)
+E: Expression (exp -> exp)
+T: Term
+V: Logical value (0/1)
+
+S ->  E
+E ->  T -> E
+T ->  V & T  |  V v T  |  !T  |  V
+V ->  0  |  1
