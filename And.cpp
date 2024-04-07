@@ -9,3 +9,7 @@ void And::print() {
     right->print();
     std::cout << ")";
 }
+
+bool And::evaluate() {
+    return left->evaluate() && right->evaluate();
+}

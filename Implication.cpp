@@ -9,3 +9,7 @@ void Implication::print() {
     right->print();
     std::cout << ")";
 }
+
+bool Implication::evaluate() {
+    return !left->evaluate() || right->evaluate();
+}

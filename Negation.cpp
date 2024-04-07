@@ -7,3 +7,7 @@ void Negation::print() {
     arg->print();
     std::cout << ")";
 }
+
+bool Negation::evaluate() {
+    return !arg->evaluate();
+}

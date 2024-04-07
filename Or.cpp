@@ -9,3 +9,7 @@ void Or::print() {
     right->print();
     std::cout << ")";
 }
+
+bool Or::evaluate() {
+    return left->evaluate() || right->evaluate();
+}

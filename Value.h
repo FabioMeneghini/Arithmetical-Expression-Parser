@@ -8,4 +8,5 @@ private:
 public:
     Value(bool value);
     void print() override;
+    bool evaluate() override;
 };
