@@ -4,6 +4,6 @@ T: Term
 V: Logical value (0/1)
 
 S ->  E
-E ->  T -> E
-T ->  V & T  |  V v T  |  !T  |  V
-V ->  0  |  1
+E ->  T -> E  |  T
+T ->  V & E  |  V v E  |  V x E  |  V
+V ->  0  |  1  |  (E)  |  !E

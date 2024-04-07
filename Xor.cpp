@@ -9,3 +9,7 @@ void Xor::print() {
     right->print();
     std::cout << ")";
 }
+
+bool Xor::evaluate() {
+    return left->evaluate() ^ right->evaluate();
+}
