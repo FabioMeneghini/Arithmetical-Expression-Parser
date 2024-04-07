@@ -80,6 +80,7 @@ TreeNode* Parser::parseT() {
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new And(a, b);
+        return c;
     }
     else if(lexer.getCurrentToken() == "v") {
         lexer.nextToken();
@@ -87,6 +88,7 @@ TreeNode* Parser::parseT() {
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new Or(a, b);
+        return c;
     }
     else if(lexer.getCurrentToken() == "x") {
         lexer.nextToken();
@@ -94,6 +96,7 @@ TreeNode* Parser::parseT() {
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new Xor(a, b);
+        return c;
     }
     else if(lexer.getCurrentToken() == "->") {
         lexer.nextToken();
@@ -101,6 +104,7 @@ TreeNode* Parser::parseT() {
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new Implication(a, b);
+        return c;
     }
     else
         return a;
