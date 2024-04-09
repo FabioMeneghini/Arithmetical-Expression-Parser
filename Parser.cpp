@@ -10,7 +10,7 @@ Parser::Parser(const std::string& input): lexer(input) {
     lexer.nextToken();
 }
 
-// V ->  0  |  1  |  (E)  |  !E
+// V ->  0  |  1  |  (E)  |  !V
 TreeNode* Parser::parseV() {
     /*if(!lexer.hasNextToken())
         return nullptr;
@@ -38,7 +38,7 @@ TreeNode* Parser::parseV() {
     }
     else if(token == "!") {
         lexer.nextToken();
-        TreeNode* node = parseE();
+        TreeNode* node = parseV();
         if(node == nullptr)
             return nullptr;
         else
@@ -76,7 +76,7 @@ TreeNode* Parser::parseT() {
     
     if(lexer.getCurrentToken() == "&") {
         lexer.nextToken();
-        TreeNode* b = parseE();
+        TreeNode* b = parseT();
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new And(a, b);
@@ -84,7 +84,7 @@ TreeNode* Parser::parseT() {
     }
     else if(lexer.getCurrentToken() == "v") {
         lexer.nextToken();
-        TreeNode* b = parseE();
+        TreeNode* b = parseT();
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new Or(a, b);
@@ -92,20 +92,20 @@ TreeNode* Parser::parseT() {
     }
     else if(lexer.getCurrentToken() == "x") {
         lexer.nextToken();
-        TreeNode* b = parseE();
+        TreeNode* b = parseT();
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new Xor(a, b);
         return c;
     }
-    else if(lexer.getCurrentToken() == "->") {
+    /*else if(lexer.getCurrentToken() == "->") {
         lexer.nextToken();
-        TreeNode* b = parseE();
+        TreeNode* b = parseT();
         if(b == nullptr)
             return nullptr;
         TreeNode* c = new Implication(a, b);
         return c;
-    }
+    }*/
     else
         return a;
 }
