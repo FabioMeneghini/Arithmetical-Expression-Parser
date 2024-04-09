@@ -4,6 +4,6 @@
 
 class TreeNode {
 public:
-    virtual void print() = 0;
-    virtual bool evaluate() = 0;
+    virtual void print() const = 0;
+    virtual bool evaluate() const = 0;
 };

@@ -2,7 +2,7 @@
 
 Xor::Xor(TreeNode* left, TreeNode* right): InfixOperator(left, right) {}
 
-void Xor::print() {
+void Xor::print() const {
     std::cout << "(";
     left->print();
     std::cout << " x ";
@@ -10,6 +10,6 @@ void Xor::print() {
     std::cout << ")";
 }
 
-bool Xor::evaluate() {
+bool Xor::evaluate() const {
     return left->evaluate() ^ right->evaluate();
 }

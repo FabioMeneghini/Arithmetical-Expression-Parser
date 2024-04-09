@@ -7,6 +7,6 @@ private:
     bool value;
 public:
     Value(bool value);
-    void print() override;
-    bool evaluate() override;
+    void print() const override;
+    bool evaluate() const override;
 };

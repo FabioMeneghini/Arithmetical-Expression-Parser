@@ -24,11 +24,11 @@ void Lexer::nextToken() {
     }
 }
 
-bool Lexer::hasNextToken() {
+bool Lexer::hasNextToken() const {
     return pos < input.size();
 }
 
-std::string Lexer::getCurrentToken() {
+std::string Lexer::getCurrentToken() const {
     return currentToken;
 }
 

@@ -5,6 +5,6 @@
 class Or: public InfixOperator {
 public:
     Or(TreeNode* left, TreeNode* right);
-    void print() override;
-    bool evaluate() override;
+    void print() const override;
+    bool evaluate() const override;
 };

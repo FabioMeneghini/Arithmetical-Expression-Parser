@@ -7,9 +7,14 @@
 class Parser {
 private:
     Lexer lexer;
-public:
-    Parser(const std::string& input);
+    TreeNode* abstract_syntax_tree;
     TreeNode* parseV();
     TreeNode* parseE();
     TreeNode* parseT();
+public:
+    Parser(const std::string& input);
+    void parse();
+    bool errorOccurred() const;
+    void print() const;
+    bool evaluate() const;
 };

@@ -6,15 +6,32 @@
 #include "Implication.h"
 #include "Negation.h"
 
-Parser::Parser(const std::string& input): lexer(input) {
+Parser::Parser(const std::string& input): lexer(input), abstract_syntax_tree(nullptr) {
+    parse();
+}
+
+void Parser::parse() {
     lexer.nextToken();
+    abstract_syntax_tree=parseE();
+}
+
+bool Parser::errorOccurred() const {
+    if(!abstract_syntax_tree)
+        return true;
+    else
+        return false;
+}
+
+void Parser::print() const {
+    abstract_syntax_tree->print();
+}
+
+bool Parser::evaluate() const {
+    return abstract_syntax_tree->evaluate();
 }
 
 // V ->  0  |  1  |  (E)  |  !V
 TreeNode* Parser::parseV() {
-    /*if(!lexer.hasNextToken())
-        return nullptr;
-    */
     std::string token = lexer.getCurrentToken();
     if(token == "1") {
         lexer.nextToken();
@@ -66,9 +83,8 @@ TreeNode* Parser::parseE() {
         return a;
 }
 
-//To check
 
-// T ->  V & E  |  V v E  |  V x E  |   V
+// T ->  V & T  |  V v T  |  V x T  |   V
 TreeNode* Parser::parseT() {
     TreeNode* a = parseV();
     if(a == nullptr)
@@ -98,14 +114,6 @@ TreeNode* Parser::parseT() {
         TreeNode* c = new Xor(a, b);
         return c;
     }
-    /*else if(lexer.getCurrentToken() == "->") {
-        lexer.nextToken();
-        TreeNode* b = parseT();
-        if(b == nullptr)
-            return nullptr;
-        TreeNode* c = new Implication(a, b);
-        return c;
-    }*/
     else
         return a;
 }
