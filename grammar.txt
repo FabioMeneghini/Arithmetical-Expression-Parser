@@ -3,13 +3,6 @@ E: Expression (exp -> exp)
 T: Term
 V: Logical value (0/1)
 
-/////////////////////////////////////////
-S ->  E
-E ->  T -> E  |  T
-T ->  V & E  |  V v E  |  V x E  |  V
-V ->  0  |  1  |  (E)  |  !V
-/////////////////////////////////////////
-
 S ->  E
 E ->  T -> E  |  T
 T ->  V & T  |  V v T  |  V x T  |  V
