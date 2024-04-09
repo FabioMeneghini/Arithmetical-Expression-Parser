@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "TreeNode.h"
+#include "AbstractSyntaxTree/TreeNode.h"
 #include "Lexer.h"
 
 class Parser {
@@ -11,6 +11,7 @@ private:
     TreeNode* parseV();
     TreeNode* parseE();
     TreeNode* parseT();
+    bool checkParentheses() const;
 public:
     Parser(const std::string& input);
     void parse();

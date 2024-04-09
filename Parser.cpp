@@ -1,10 +1,10 @@
 #include "Parser.h"
-#include "Value.h"
-#include "Or.h"
-#include "Xor.h"
-#include "And.h"
-#include "Implication.h"
-#include "Negation.h"
+#include "AbstractSyntaxTree/Value.h"
+#include "AbstractSyntaxTree/Or.h"
+#include "AbstractSyntaxTree/Xor.h"
+#include "AbstractSyntaxTree/And.h"
+#include "AbstractSyntaxTree/Implication.h"
+#include "AbstractSyntaxTree/Negation.h"
 
 Parser::Parser(const std::string& input): lexer(input), abstract_syntax_tree(nullptr) {
     parse();
@@ -15,11 +15,27 @@ void Parser::parse() {
     abstract_syntax_tree=parseE();
 }
 
-bool Parser::errorOccurred() const {
-    if(!abstract_syntax_tree)
+bool Parser::checkParentheses() const {
+    int count=0;
+    for(unsigned int i=0; i<lexer.getInput().size(); i++) {
+        if(lexer.getInput()[i] == '(')
+            count++;
+        else if(lexer.getInput()[i] == ')')
+            count--;
+        if(count < 0)
+            return false;
+    }
+    if(count == 0)
         return true;
     else
         return false;
+}
+
+bool Parser::errorOccurred() const {
+    if(checkParentheses() && abstract_syntax_tree != nullptr)
+        return false;
+    else
+        return true;
 }
 
 void Parser::print() const {

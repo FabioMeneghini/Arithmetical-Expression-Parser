@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "TreeNode.h"
+#include "AbstractSyntaxTree/TreeNode.h"
 
 class Lexer {
 private:
@@ -14,4 +14,5 @@ public:
     bool hasNextToken() const;
     //TreeNode* scanToken();
     std::string getCurrentToken() const;
+    std::string getInput() const;
 };
