@@ -7,7 +7,7 @@ The language this program can parse is described by the following grammar:
 
 `E ->  T -> E  |  T`
 
-`T ->  V & E  |  V v E  |  V x E  |  V`
+`T ->  V & T  |  V v T  |  V x T  |  V`
 
 `V ->  0  |  1  |  (E)  |  !V`
 
