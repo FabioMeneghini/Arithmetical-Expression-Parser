@@ -5,7 +5,7 @@
 #include "TreeNode.h"
 
 int main() {
-    std::string input="(!1 & 0) -> (0 & 1)";
+    std::string input="(0v1)&1 -> ((!!1 & !0) -> 1)";
 
     Parser parser(input);
     TreeNode* root = parser.parseE();
