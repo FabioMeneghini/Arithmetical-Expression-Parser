@@ -13,7 +13,7 @@ The language this program can parse is described by the following grammar:
 
 Where S is the first rule to apply, and `->`, `&`, `v`, `x`, `!` are the symbols for implication, conjunction, disjunction, exclusive disjunction and negation, respectively.
 
-___Next updates will include:___
+___This project is not finished yet: next updates will include:___
 - ___graphical user interface,___
 - ___support for textual logical operators (e.g. "and" instead of "&"),___
 - ___and more...___
