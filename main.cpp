@@ -3,7 +3,7 @@
 #include "Parser.h"
 
 int main() {
-    std::string input="(0 v 1) & 1 -> ((!!1 & !0) -> 1) x 1";
+    std::string input="!((0 v 1) & 1 -> ((!!1 & !0) -> 1) x 1)";
 
     Parser parser(input);
     //parser.parse();

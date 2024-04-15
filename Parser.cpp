@@ -11,16 +11,19 @@ Parser::Parser(const std::string& input): lexer(input), abstract_syntax_tree(nul
 }
 
 void Parser::parse() {
-    lexer.nextToken();
-    abstract_syntax_tree=parseE();
+    if(checkParentheses()) {
+        lexer.nextToken();
+        abstract_syntax_tree=parseE();
+    }
 }
 
 bool Parser::checkParentheses() const {
     int count=0;
-    for(unsigned int i=0; i<lexer.getInput().size(); i++) {
-        if(lexer.getInput()[i] == '(')
+    std::string input = lexer.getInput();
+    for(unsigned int i=0; i<input.size(); i++) {
+        if(input[i] == '(')
             count++;
-        else if(lexer.getInput()[i] == ')')
+        else if(input[i] == ')')
             count--;
         if(count < 0)
             return false;
@@ -32,7 +35,7 @@ bool Parser::checkParentheses() const {
 }
 
 bool Parser::errorOccurred() const {
-    if(checkParentheses() && abstract_syntax_tree != nullptr)
+    if(abstract_syntax_tree != nullptr)
         return false;
     else
         return true;
