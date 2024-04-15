@@ -1,5 +1,5 @@
 # Logical Expression Parser
-Logical expression parser with ___recursive descent parsing___ algorithm.
+Logical expression parser implementation with ___recursive descent parsing___ algorithm.
 
 The language this program can parse is described by the following grammar:
 
@@ -11,7 +11,7 @@ The language this program can parse is described by the following grammar:
 
 `V ->  0  |  1  |  (E)  |  !V`
 
-Where S is the first rule to apply, and `->`, `&`, `v`, `x`, `!` are the symbols for implication, conjunction, disjunction, exclusive or and negation, respectively.
+Where S is the first rule to apply, and `->`, `&`, `v`, `x`, `!` are the symbols for implication, conjunction, disjunction, exclusive disjunction and negation, respectively.
 
 ___Next updates will include:___
 - ___graphical user interface,___
