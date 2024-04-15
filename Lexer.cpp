@@ -2,6 +2,10 @@
 
 Lexer::Lexer(const std::string& input): input(input), pos(0) {}
 
+std::string Lexer::getInput() const {
+    return input;
+}
+
 void Lexer::nextToken() {
     while (pos < input.size() && input[pos] == ' ') {
         pos++;
@@ -24,43 +28,10 @@ void Lexer::nextToken() {
     }
 }
 
-bool Lexer::hasNextToken() {
+bool Lexer::hasNextToken() const {
     return pos < input.size();
 }
 
-std::string Lexer::getCurrentToken() {
+std::string Lexer::getCurrentToken() const {
     return currentToken;
 }
-
-/*TreeNode* Lexer::scanToken() {
-    std::string token = nextToken();
-    if (token == "") {
-        return nullptr;
-    }
-    if (token == "(") {
-        TreeNode* node = scanE();
-        if (nextToken() != ")") {
-            return nullptr;
-        }
-        return node;
-    }
-    if (token == "1") {
-        return new Value(true);
-    }
-    if (token == "0") {
-        return new Value(false);
-    }
-    if (token == "!") {
-        return new Not(scanToken());
-    }
-    if (token == "x") {
-        return new Xor(scanToken(), scanToken());
-    }
-    if (token == "&") {
-        return new And(scanToken(), scanToken());
-    }
-    if (token == "v") {
-        return new Or(scanToken(), scanToken());
-    }
-    return nullptr;
-}*/

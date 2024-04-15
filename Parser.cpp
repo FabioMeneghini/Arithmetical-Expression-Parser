@@ -1,20 +1,56 @@
 #include "Parser.h"
-#include "Value.h"
-#include "Or.h"
-#include "Xor.h"
-#include "And.h"
-#include "Implication.h"
-#include "Negation.h"
+#include "AbstractSyntaxTree/Value.h"
+#include "AbstractSyntaxTree/Or.h"
+#include "AbstractSyntaxTree/Xor.h"
+#include "AbstractSyntaxTree/And.h"
+#include "AbstractSyntaxTree/Implication.h"
+#include "AbstractSyntaxTree/Negation.h"
 
-Parser::Parser(const std::string& input): lexer(input) {
-    lexer.nextToken();
+Parser::Parser(const std::string& input): lexer(input), abstract_syntax_tree(nullptr) {
+    parse();
+}
+
+void Parser::parse() {
+    if(checkParentheses()) {
+        lexer.nextToken();
+        abstract_syntax_tree=parseE();
+    }
+}
+
+bool Parser::checkParentheses() const {
+    int count=0;
+    std::string input = lexer.getInput();
+    for(unsigned int i=0; i<input.size(); i++) {
+        if(input[i] == '(')
+            count++;
+        else if(input[i] == ')')
+            count--;
+        if(count < 0)
+            return false;
+    }
+    if(count == 0)
+        return true;
+    else
+        return false;
+}
+
+bool Parser::errorOccurred() const {
+    if(abstract_syntax_tree != nullptr)
+        return false;
+    else
+        return true;
+}
+
+void Parser::print() const {
+    abstract_syntax_tree->print();
+}
+
+bool Parser::evaluate() const {
+    return abstract_syntax_tree->evaluate();
 }
 
 // V ->  0  |  1  |  (E)  |  !V
 TreeNode* Parser::parseV() {
-    /*if(!lexer.hasNextToken())
-        return nullptr;
-    */
     std::string token = lexer.getCurrentToken();
     if(token == "1") {
         lexer.nextToken();
@@ -66,9 +102,8 @@ TreeNode* Parser::parseE() {
         return a;
 }
 
-//To check
 
-// T ->  V & E  |  V v E  |  V x E  |   V
+// T ->  V & T  |  V v T  |  V x T  |   V
 TreeNode* Parser::parseT() {
     TreeNode* a = parseV();
     if(a == nullptr)
@@ -98,14 +133,6 @@ TreeNode* Parser::parseT() {
         TreeNode* c = new Xor(a, b);
         return c;
     }
-    /*else if(lexer.getCurrentToken() == "->") {
-        lexer.nextToken();
-        TreeNode* b = parseT();
-        if(b == nullptr)
-            return nullptr;
-        TreeNode* c = new Implication(a, b);
-        return c;
-    }*/
     else
         return a;
 }

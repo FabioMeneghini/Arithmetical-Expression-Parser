@@ -5,6 +5,6 @@
 class Negation: public PrefixOperator {
 public:
     Negation(TreeNode* arg);
-    void print() override;
-    bool evaluate() override;
+    void print() const override;
+    bool evaluate() const override;
 };

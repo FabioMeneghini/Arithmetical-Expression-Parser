@@ -2,7 +2,7 @@
 
 Or::Or(TreeNode* left, TreeNode* right): InfixOperator(left, right) {}
 
-void Or::print() {
+void Or::print() const {
     std::cout << "(";
     left->print();
     std::cout << " v ";
@@ -10,6 +10,6 @@ void Or::print() {
     std::cout << ")";
 }
 
-bool Or::evaluate() {
+bool Or::evaluate() const {
     return left->evaluate() || right->evaluate();
 }

@@ -1,20 +1,18 @@
 #include <iostream>
 #include <string>
-#include "Lexer.h"
 #include "Parser.h"
-#include "TreeNode.h"
 
 int main() {
-    std::string input="(0v1)&1 -> ((!!1 & !0) -> 1)";
+    std::string input="!((0 v 1) & 1 -> ((!!1 & !0) -> 1) x 1)";
 
     Parser parser(input);
-    TreeNode* root = parser.parseE();
+    //parser.parse();
 
-    if (root == nullptr) {
+    if (parser.errorOccurred()) {
         std::cout << "Invalid input" << std::endl;
     } else {
-        root->print();
-        std::cout << std::endl << root->evaluate() << std::endl;
+        parser.print();
+        std::cout << std::endl << parser.evaluate() << std::endl;
     }
 
     return 0;

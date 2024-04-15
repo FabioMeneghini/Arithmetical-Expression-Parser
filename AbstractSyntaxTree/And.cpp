@@ -2,7 +2,7 @@
 
 And::And(TreeNode* left, TreeNode* right): InfixOperator(left, right) {}
 
-void And::print() {
+void And::print() const {
     std::cout << "(";
     left->print();
     std::cout << " & ";
@@ -10,6 +10,6 @@ void And::print() {
     std::cout << ")";
 }
 
-bool And::evaluate() {
+bool And::evaluate() const {
     return left->evaluate() && right->evaluate();
 }
